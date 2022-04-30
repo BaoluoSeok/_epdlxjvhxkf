@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | 뉴스룸</title>
+  </head>
+  <body style="text-align: center">
+    <canvas id="unity-canvas" width=850 height=500 style="width: 850px; height: 500px; background: #231F20"></canvas>
+    <script src="Build/webglver.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/webglver.data.gz",
+        frameworkUrl: "Build/webglver.framework.js.gz",
+        codeUrl: "Build/webglver.wasm.gz",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "dataportal",
+        productName: "뉴스룸",
+        productVersion: "0.3",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+    </script>
+  </body>
+</html>
