@@ -1,25 +1,799 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | 뉴스룸</title>
-  </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" width=850 height=500 style="width: 850px; height: 500px; background: #231F20"></canvas>
-    <script src="Build/webglver.loader.js"></script>
-    <script>
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/webglver.data.gz",
-        frameworkUrl: "Build/webglver.framework.js.gz",
-        codeUrl: "Build/webglver.wasm.gz",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "dataportal",
-        productName: "뉴스룸",
-        productVersion: "0.3",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
-    </script>
-  </body>
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="format-detection" content="telephone=no">
+<title>데이터월드뉴스</title>
+<meta name="description" content="빅데이터 기반 정부정책, 수출입동향, 산업계동향, 소비재동향, 소비자 반응, 전문가 칼럼 등" />
+<meta name="keywords" content="빅데이터 기반 정부정책, 수출입동향, 산업계동향, 소비재동향, 소비자 반응, 전문가 칼럼 등" />
+<meta property="og:title" content="데이터월드뉴스" />
+<meta property="og:description" content="빅데이터 기반 정부정책, 수출입동향, 산업계동향, 소비재동향, 소비자 반응, 전문가 칼럼 등" />
+<meta property="og:site_name" content="데이터월드뉴스"/>
+	<link rel="canonical" href="https://www.dataworldnews.co.kr" /><link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.dataworldnews.co.kr"/>
+<link rel="alternate" href="https://www.dataworldnews.co.kr/rss_xml.php" type="application/rss+xml" title="데이터월드뉴스 속보 [RSS]" />
+<link rel="shortcut icon" type="image/x-icon" href="https://www.dataworldnews.co.kr/favicon.ico" />
+<link rel="stylesheet" href="https://cgeimage.commutil.kr/dataworld_www/css/slick.css?pp=009" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="https://cgeimage.commutil.kr/dataworld_www/css/common.css?pp=009" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="https://cgeimage.commutil.kr/dataworld_www/css/jquery.fancybox.css?pp=009" type="text/css" charset="utf-8" />
+<!--[if lte IE 8]>
+<script src="https://cgeimage.commutil.kr/dataworld_www/js/html5.js?pp=001"></script>
+<![endif]-->
+<script src="https://cgeimage.commutil.kr/dataworld_www/js/jquery-1.12.4.min.js?pp=001"></script>
+<script src="https://cgeimage.commutil.kr/dataworld_www/js/jquery.bxslider.js?pp=001"></script>
+<script src="https://cgeimage.commutil.kr/dataworld_www/js/jquery.fancybox.js?pp=001"></script>
+<script src="https://cgeimage.commutil.kr/dataworld_www/js/slick.js?pp=001"></script>
+<script src="https://cgeimage.commutil.kr/dataworld_www/js/ui_common.js?pp=001"></script>
+<span itemscope="" itemtype="http://schema.org/Organization">
+  <link itemprop="url" href="https://www.dataworldnews.co.kr">
+  <a itemprop="sameAs" href="</a'>https://post.naver.com/dataworldnews"></a>
+  <a itemprop="sameAs" href="</a'>https://www.facebook.com/dataworldnews"></a>
+  <a itemprop="sameAs" href="</a'>https://blog.naver.com/dataworldnews"></a>
+  <a itemprop="sameAs" href="</a'>https://pf.kakao.com/_xlgsJb"></a>
+</span>
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"name": "데이터월드뉴스",
+	"url": "https://www.dataworldnews.co.kr",
+	"sameAs": [
+	"https://www.facebook.com/dataworldnews",
+	"https://post.naver.com/dataworldnews",
+	"https://blog.naver.com/dataworldnews",
+	"https://pf.kakao.com/_xlgsJb"
+	]
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+function goOpenWinEvent(url, w, h) {
+	window.open(url, 'goOpenWinEvent', 'width='+w+',height='+h+',resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no');
+}
+
+function hitEnterKey(e)
+{
+	if (e.keyCode == 13) {
+		TopInputSearchIt();
+	} else {
+		e.keyCode == 0;
+		return;
+	}
+}
+
+function TopInputSearchIt()
+{
+	var sNameValue = $("#sch").val();
+	if( !sNameValue )
+	{
+		alert("검색어를 입력하세요.");
+		$("#sch").focus();
+		return;
+	}
+
+	document.location.href="https://www.dataworldnews.co.kr/search.php?sn=" + encodeURIComponent(sNameValue) + "";
+}
+
+var UserAgent = navigator.userAgent;
+var m_userAgent = '';
+var m_mobile = new Array('iphone', 'ipod', 'ipad', 'android', 'blackberry', 'windows ce', 'nokia', 'webos', 'opera mini', 'sonyericsson', 'opera mobi', 'iemobile', 'mot');
+var m_mobileCheck = 0;
+var strDocLoc = document.location.href;
+//mobile=1
+if( strDocLoc.indexOf('www.dataworldnews.co.kr') != -1 && strDocLoc.indexOf('view.php') != -1 && strDocLoc.indexOf('mobile=1') <= 0 )
+{
+	if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
+	{
+		document.location.href="https://m.dataworldnews.co.kr/index.php";
+	}
+}
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-217348332-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-217348332-1');
+</script><script async src='https://securepubads.g.doubleclick.net/tag/js/gpt.js'></script></head>
+<body>
+
+	<div class="all_menu">
+		<div class="menu_con">
+			<a href="javascript:void(0)" class="btn_close">닫기</a>
+			<h1>전체서비스</h1>
+			<div class="all_layme_area">
+				<div class="dep dep1">
+					
+						<div class="dep_list" style="width: calc(100% / 4);">
+							<h2>
+								<a href="https://www.dataworldnews.co.kr/list.php?ct=g0300">데이터VIEW</a>
+							</h2>
+		
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0301">무역&통상</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0302">의료&건강</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0303">지역&경제</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0304">사회&안전</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0305">부동산&매매</a></li>
+							</ul>
+				
+							</div>
+		
+						<div class="dep_list" style="width: calc(100% / 4);">
+							<h2>
+								<a href="https://www.dataworldnews.co.kr/list.php?ct=g0200">경제</a>
+							</h2>
+		
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0201">기업</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0202">금융</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0203">증시</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0204">산업</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0205">부동산</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0206">소비자</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0207">생활경제</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0208">일반</a></li>
+							</ul>
+				
+							</div>
+		
+						<div class="dep_list" style="width: calc(100% / 4);">
+							<h2>
+								<a href="https://www.dataworldnews.co.kr/list.php?ct=g0400">사회</a>
+							</h2>
+		
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0401">지방자치</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0402">교육</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0403">인터뷰</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0404">피플</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0405">일반</a></li>
+							</ul>
+				
+							</div>
+		
+						<div class="dep_list" style="width: calc(100% / 4);">
+							<h2>
+								<a href="https://www.dataworldnews.co.kr/list.php?ct=g0100">농산물지수</a>
+							</h2>
+		
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0101">농산물지수</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0102">농산물유통</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0103">농산경제</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0104">날씨정보</a></li>
+							</ul>
+				
+							</div>
+						</div>
+				<div class="dep dep1">
+					
+						<div class="dep_list" style="width: calc(100% / 4);">
+							<h2>
+								<a href="https://www.dataworldnews.co.kr/list.php?ct=g0700">오피니언</a>
+							</h2>
+		
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0701">데스크칼럼</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0702">전문가진단</a></li>
+							</ul>
+				
+							<ul>
+								<li><a href="https://www.dataworldnews.co.kr/list.php?ct=g0703">데이터가이드</a></li>
+							</ul>
+				
+							</div>
+						</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="search">
+        <div class="search_area">
+            <a href="javascript:void(0);" class="close_search">닫기</a>
+            <span class="input_search" style="margin-bottom: 43px;">
+                <input type="text" name="sch" id="sch" placeholder="검색어를 입력하세요" title="검색어 입력" onkeyup="hitEnterKey(event)">
+                <a href="javascript:TopInputSearchIt()" class="btn_sch">검색</a>
+            </span>
+        </div>
+    </div>
+    
+	<div class="top">
+	<div class="top1d">
+		<div class="in">
+			<p class="w1">
+				<a href="https://www.datatooza.com" target="_blank" rel="nofollow" style="color: #fff;">데이터투자</a>
+			</p>
+			<ul class="w2">
+				<li><a href="javascript:void(0);">Updated : 2022-05-01 (일)</a></li>
+
+				<li><a href="https://www.dataworldnews.co.kr/member/join_step1.php" rel="nofollow">회원가입</a></li>
+				<li><a href="https://www.dataworldnews.co.kr/oauth/login.php?sju=https%3A%2F%2Fwww.dataworldnews.co.kr%2Findex.php" rel="nofollow">로그인</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="top2d" style="padding: 36px 0 40px 0;height: 30px;">
+		<div class="in">
+			<div class="top2d_lt cl" style="top:19px;">
+				<div class="top2d_menu">
+					<a href="javascript:;" class="btn_top_menu" rel="nofollow"><span class="blind">메뉴</span></a>
+				</div>
+				<div class="top2d_sch">
+					<a href="javascript:;" class="btn_top_sch" rel="nofollow"><span class="blind">검색</span></a>
+				</div>
+			</div>
+			<h1 style="margin-top:-20px;width: 316px;"><a href="https://www.dataworldnews.co.kr/index.php"><img src="https://cgeimage.commutil.kr/dataworld_www/img/logo01.png?pp=003" alt="데이터월드뉴스" style="width: 316px;" /></a></h1>
+			<div class="top2d_rt" style="top:21px;">
+				<ul class="cl">
+					<li><a href="https://www.facebook.com/dataworldnews" target="_blank"><span class="blind">페이스북</span></a></li>
+					<li><a href="https://post.naver.com/dataworldnews" target="_blank"><span class="blind">포스트</span></a></li>
+					<li><a href="https://blog.naver.com/dataworldnews" target="_blank"><span class="blind">블로그</span></a></li>
+					<li><a href="javascript:;"><span class="blind">유튜브</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div><!-- //top_2d -->
+	</div><!-- //top -->
+		<div class="mwrap">
+		<div class="in">
+			<div class="mw01 cl">
+				<div class="mw_lt">
+					<canvas id="unity-canvas" width=850 height=500 style="width: 850px; height: 500px; background: #231F20"></canvas>
+          <script src="Build/webglver.loader.js"></script>
+          <script>
+            createUnityInstance(document.querySelector("#unity-canvas"), {
+              dataUrl: "Build/webglver.data.gz",
+              frameworkUrl: "Build/webglver.framework.js.gz",
+              codeUrl: "Build/webglver.wasm.gz",
+              streamingAssetsUrl: "StreamingAssets",
+              companyName: "dataportal",
+              productName: "뉴스룸",
+              productVersion: "0.3",
+              // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+              // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+            });
+          </script>
+					<div class="dd_m3d mt30">
+						<ul>
+							
+				<li>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204280746073192a6d16f4942_80" class="img"><img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=400&h=284&m=1&simg=20220428145137098555bd537fc37175113782.jpg" /></a>
+					<a href="https://www.dataworldnews.co.kr/list.php?ct=g0200" class="w1">경제</a>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204280746073192a6d16f4942_80" class="w2"><span class="elip2">'尹집무실 인근'  삼각지역<br> 38층 아파트 들어선다</span></a>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204280746073192a6d16f4942_80" class="w3"><span class="elip2">삼각지역 인근 용산구 한강로2가2-5호 일대에 2027년 지상 38층 규모의 아파트가 들어선다. 올해 12월 사업시행계획인가를 거쳐 2025년 착공에 들어갈 예정이다.서울시가 지난 26일 열린 제9차 건축위원회에서 신용산역 북측 제1구역 도시정비형 재개발 사업 건축계획안을 통과시켰다고 28일 밝혔다.이번 심의 통과로 해당 사업부지 일대는 연면적 11만5622.50㎡, 지하 7층~지상 38층 규모의 공동주택 324세대(공공주택 29세대, 분양주택 295세대)2개 동과 지하 7층~지상 28층 규모의 업무시설 1개 동이 들어선다. 한강대로와 이면도로변 가로 활성화를 위해 저층부(지상 1~3층)에는 판매시설이 설치된다.한강대로변에 위치한사업 부지는 지하철 </span></a>
+				</li>
+			
+				<li>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204270850436851a2a9baa511_80" class="img"><img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=400&h=284&m=1&simg=20220427161036057835bd537fc37175113782.jpg" /></a>
+					<a href="https://www.dataworldnews.co.kr/list.php?ct=g0400" class="w1">사회</a>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204270850436851a2a9baa511_80" class="w2"><span class="elip2">닷새만에 69건 수출상담…<br> 지자체 '中 공략' 기동대 떴다</span></a>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204270850436851a2a9baa511_80" class="w3"><span class="elip2">경기도와 경기지역FTA활용지원센터는 도내 중소 수출기업의 중국 시장 진출 지원을 위해 지난 18일부터 22일까지 닷새간 '2022 경기도 FTA활용 중국 화상 통상촉진단'을 운영했다고 27일 밝혔다.  이번 통상촉진단은 현지 수요가 많은 생활용품, 화장품, 기계·장비 품목을 중심으로 선정된 도내 우수기업 15개 사가 참여, 중국 텐진과 항저우 현지 바이어들과 온라인 화상상담을 벌이는 식으로 진행됐다. 특히 도는 바이어 주선, 전문통역원, 샘플 운송비(일부) 등 적극적인 지원을 아끼지 않은 결과, 총 69건 234만 달러(한화 29억 원 상당)의 수출 상담과 113만 달러(한화 14억 원 상당) 규모의 계약추진 성과를 거뒀다.  참가기업들은 코로나</span></a>
+				</li>
+			
+				<li>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204261006118632a6d16f4942_80" class="img"><img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=400&h=284&m=1&simg=20220426110304065875bd537fc37175113782.jpg" /></a>
+					<a href="https://www.dataworldnews.co.kr/list.php?ct=g0200" class="w1">경제</a>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204261006118632a6d16f4942_80" class="w2"><span class="elip2">경유에서 수소로…<br>지게차도 '친환경 모드'</span></a>
+					<a href="https://www.dataworldnews.co.kr/view.php?ud=202204261006118632a6d16f4942_80" class="w3"><span class="elip2">두산밥캣이 국내에서 수소 연료전지 기반의 소형장비 개발에 착수하면서 친환경 사업 분야 확장에 나선다.두산밥캣은 경기도 성남시 분당두산타워에서 SK E&S·미국 플러그(구 플러그파워)의 합작법인과 수소 지게차 개발 상호 협력을 위한 양해각서(MOU)를 체결했다고 26일 밝혔다.이번 MOU를 통해 두산밥캣은 수소 지게차 차량과 시장 정보 등을 제공하고, SK E&S·미국 플러그의 합작법인은 수소 지게차용 연료전지 개발·공급과 수소 충전소 설치 및 수소 공급 등을 담당한다. 양사는 산업통상자원부가 지원하는 수소 지게차 상용화를 위한 실증 기반 신뢰성 검증 기술 개발 시범사업에 참여해 수소 연료전지 지게차 개발과 마케팅, 판매까지</span></a>
+				</li>
+									</ul>
+					</div><!-- //dd_m3d -->
+
+<div class="mt40" data-id="pcmainad001" style="text-align:center;"><center><div id='tdn_S010_dataworldnews_ga02_pc_main_category_mid_atf_728x90'><script> 
+window.googletag = window.googletag || {cmd: []};
+googletag.cmd.push(function() {
+googletag.defineSlot('/21682743634,22445643018/S010/dataworldnews/ga02/pc/main_category_mid_atf_728x90', [728, 90], 'tdn_S010_dataworldnews_ga02_pc_main_category_mid_atf_728x90').addService(googletag.pubads().set('page_url', '//dataworldnews.co.kr'));
+googletag.enableServices(); googletag.display('tdn_S010_dataworldnews_ga02_pc_main_category_mid_atf_728x90'); });
+</script></div></center></div>					<div class="bb_m3d  mt40">
+						<div class="bb_tit01 cl">
+							<h2>사회</h2>
+						</div>
+						<div class="bb_m3d_con">
+							<ul class="cl">
+								
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290948311010a6d16f4942_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=1&simg=20220429152004014565bd537fc37175113782.jpg" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290948311010a6d16f4942_80" class="txt">
+										<span class="elip2">
+										도로교통공단·한국도로공사 "교통사고 예방·교통안전 의식 개선"
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204280820026473a2a9baa511_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=1&simg=20220428142523097515bd537fc37175113782.jpg" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204280820026473a2a9baa511_80" class="txt">
+										<span class="elip2">
+										부산시, 지역中企 전시·박람회 참가비용 지원
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=20220428084344254a2a9baa511_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=1&simg=20220428105917058585bd537fc37175113782.jpg" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=20220428084344254a2a9baa511_80" class="txt">
+										<span class="elip2">
+										"경북 유망 스타트업을 소개합니다"
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=20220427085837735a2a9baa511_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=1&simg=202204271356128316dpatl30bdc1b4b8.png" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=20220427085837735a2a9baa511_80" class="txt">
+										<span class="elip2">
+										"떡잎부터 제대로" 경기도 바이오 새싹기업 지원…스타기업 육성
+										</span>
+									</a>
+								</li>
+										</ul>
+						</div>
+						<div class="bb_m3d_btm">
+							<div class="w1">
+								<a href="https://www.dataworldnews.co.kr/list.php?ct=g0400">사회 콘텐츠 더보기</a>
+							</div>
+						</div>
+					</div><!-- //bb_m3d -->
+					<div class="bb_m3d  mt40">
+						<div class="bb_tit01 cl">
+							<h2>농산물지수</h2>
+						</div>
+						<div class="bb_m3d_con">
+							<ul class="cl">
+								
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=2022050107000132263f2b9a51cd_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=1&simg=2022050106202515262_kpmwatbot.png" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=2022050107000132263f2b9a51cd_80" class="txt">
+										<span class="elip2">
+										<span class="sp01">오늘(1일) 날씨</span>경기 전지역 맑음...아침 최저 2~9도, 낮 최고 17~20도
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=20220501065022523f2b9f02c4_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=1&simg=2022050106202514116_kpmwatbot.png" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=20220501065022523f2b9f02c4_80" class="txt">
+										<span class="elip2">
+										<span class="sp01">오늘(1일) 날씨</span>강원 대부분 맑고 곳곳 구름...아침 최저 3~11도, 낮 최고 14~21도
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=2022050106501784973f2b9db235_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=1&simg=2022050106202413725_kpmwatbot.png" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=2022050106501784973f2b9db235_80" class="txt">
+										<span class="elip2">
+										<span class="sp01">오늘(1일) 날씨</span>충북 전지역 맑음...아침 최저 3~6도, 낮 최고 18~20도
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=2022050106501280923f2b969f86_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=1&simg=202205010620241262_kpmwatbot.png" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=2022050106501280923f2b969f86_80" class="txt">
+										<span class="elip2">
+										<span class="sp01">오늘(1일) 날씨</span>충남 전지역 맑음...아침 최저 3~7도, 낮 최고 17~20도
+										</span>
+									</a>
+								</li>
+										</ul>
+						</div>
+						<div class="bb_m3d_btm">
+							<div class="w1">
+								<a href="https://www.dataworldnews.co.kr/list.php?ct=g0100">농산물지수 콘텐츠 더보기</a>
+							</div>
+						</div>
+					</div><!-- //bb_m3d -->
+					<div class="bb_m3d  mt40">
+						<div class="bb_tit01 cl">
+							<h2>오피니언</h2>
+						</div>
+						<div class="bb_m3d_con">
+							<ul class="cl">
+								
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202202281736266627568747773c_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=6&simg=2022022817540308857568747773c175113782.jpg" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202202281736266627568747773c_80" class="txt">
+										<span class="elip2">
+										중국 성장률 -5%…올 하반기 글로벌 경기침체 닥친다⓸
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202202271545151175568747773c_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=6&simg=2022022715473307782568747773c175113782.jpg" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202202271545151175568747773c_80" class="txt">
+										<span class="elip2">
+										천연자원 가격 급등…심각한 물가불안 가시화③
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=20220226172603920568747773c_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=6&simg=2022022617271303481568747773c175113782.jpg" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=20220226172603920568747773c_80" class="txt">
+										<span class="elip2">
+										“제소전화해를 할 때는 2가지 체크해야”
+										</span>
+									</a>
+								</li>
+			
+								<li>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202202261656377230568747773c_80" class="img">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=186&h=124&m=6&simg=2022022616583206095568747773c175113782.jpg" />
+									</a>
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202202261656377230568747773c_80" class="txt">
+										<span class="elip2">
+										전통문화 보존은 우리의 책무다
+										</span>
+									</a>
+								</li>
+										</ul>
+						</div>
+						<div class="bb_m3d_btm">
+							<div class="w1">
+								<a href="https://www.dataworldnews.co.kr/list.php?ct=g0700">오피니언 콘텐츠 더보기</a>
+							</div>
+						</div>
+					</div><!-- //bb_m3d -->
+				</div><!-- //mw_lt -->
+				<div class="mw_rt">
+					<div class="bb_prenews01 ">
+						<a href="https://www.dataworldnews.co.kr/list.php?ct=g0300">데이터VIEW</a>
+					</div>
+					<div class="bb_m2d">
+						<ul>
+							
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204291002563833a6d16f4942_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">카카오T 앱으로 시티투어 예약해볼까</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204291002563833a6d16f4942_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=20220429162633041365bd537fc37175113782.jpg" />
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290952284179a6d16f4942_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">수협, 예적금 24종 금리 최대 0.5%p 인상</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290952284179a6d16f4942_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=2022042909524901209a6d16f4942591477218.jpg" />
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290753235433a6d16f4942_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">서울 공시지가 2년연속 11.54% 올라…성동구 최고</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290753235433a6d16f4942_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=202204291120300440230bdc1b4b8175113782.jpg" />
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204281357538138a2a9baa511_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">울산 경제자유구역 추가 지정 본격화</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204281357538138a2a9baa511_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=20220428161056063365bd537fc37175113782.jpg" />
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204281406289473a2a9baa511_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">경기도, 바이오기업 제품화 지원</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204281406289473a2a9baa511_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=20220428155129074145bd537fc37175113782.jpg" />
+									</a>
+								</div>
+							</li>
+									</ul>
+					</div><!-- //bb_m2d -->
+<div class="mt20" data-id="pcallad001" style="text-align:center;"><center><div id='tdn_S010_dataworldnews_ga02_pc_all_right_mid_btf_300x250'><script> 
+window.googletag = window.googletag || {cmd: []}; 
+googletag.cmd.push(function() { 
+googletag.defineSlot('/21682743634,22445643018/S010/dataworldnews/ga02/pc/all_right_mid_btf_300x250', [300, 250], 'tdn_S010_dataworldnews_ga02_pc_all_right_mid_btf_300x250').addService(googletag.pubads().set('page_url', '//dataworldnews.co.kr')); 
+googletag.enableServices(); googletag.display('tdn_S010_dataworldnews_ga02_pc_all_right_mid_btf_300x250'); }); 
+</script></div></center></div>			<div class="mt20"><a href="http://pf.kakao.com/_xlgsJb" target="_blank"><img src="https://cgeimage.commutil.kr/dataworld_www/img/kakaochannel_plus.png?pp=001" width="300" /></a></div>
+					<div class="bb_prenews01  mt20">
+						<a href="https://www.dataworldnews.co.kr/list.php?ct=g0200">경제</a>
+					</div>
+					<div class="bb_m2d">
+						<ul>
+							
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204291000192043a6d16f4942_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">11번가, 애견협회에 강아지 사료 3톤 기부</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204291000192043a6d16f4942_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=20220429161006048135bd537fc37175113782.jpg" />
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290957242717a6d16f4942_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">아시아나·관광공사 손잡고 '외국인 관광객 모시기'</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290957242717a6d16f4942_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=20220429155928096575bd537fc37175113782.jpg" />
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290946234544a6d16f4942_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">"치킨 먹고 캠핑 가요" BBQ, 추첨 경품</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290946234544a6d16f4942_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=20220429152822092725bd537fc37175113782.jpg" />
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290944367902a6d16f4942_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">폴꾸…다꾸…꾸미기 누가누가 잘하나</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290944367902a6d16f4942_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=20220429150542050055bd537fc37175113782.jpg" />
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290941387815a6d16f4942_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">꺼져야 살아난다…예술품 품은 TV</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204290941387815a6d16f4942_80">
+										<img src="https://cgeimage.commutil.kr/dataworld_www/complogo/A005930.jpg" alt="logo" onerror="this.src='https://cgeimage.commutil.kr/dataworld_www/complogo/empty_logo.jpg';">
+									</a>
+								</div>
+							</li>
+			
+							<li>
+								<div class="txt">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204281403508454a2a9baa511_80">
+										<span class="elip2" style="font-size: 20px;line-height: 25px;max-height: 51px;">경기도 식품안전관리 우수기관 선정</span>
+									</a>
+								</div>
+								<div class="img">
+									<a href="https://www.dataworldnews.co.kr/view.php?ud=202204281403508454a2a9baa511_80">
+										<img src="https://cgeimage.commutil.kr/phpwas/restmb_setimgmake.php?w=72&h=72&m=1&simg=20220428171706090175bd537fc37175113782.jpg" />
+									</a>
+								</div>
+							</li>
+									</ul>
+					</div><!-- //bb_m2d -->
+					
+				</div><!--  //mw_rt -->
+			</div><!-- //mw01 -->
+		</div><!-- /in -->
+	</div><div class="mt40 clsAdFooter" data-id="pcallad002" style="text-align:center;"><center><div id='tdn_S010_dataworldnews_ga02_pc_all_bottom_btf_970x250'><script> 
+window.googletag = window.googletag || {cmd: []};
+googletag.cmd.push(function() {
+googletag.defineSlot('/21682743634,22445643018/S010/dataworldnews/ga02/pc/all_bottom_btf_970x250', [970, 250], 'tdn_S010_dataworldnews_ga02_pc_all_bottom_btf_970x250').addService(googletag.pubads().set('page_url', '//dataworldnews.co.kr'));
+googletag.enableServices(); googletag.display('tdn_S010_dataworldnews_ga02_pc_all_bottom_btf_970x250'); });
+</script></div></center></div>
+	<div class="footer clsFooter">
+		<div class="in">
+			<div class="ft1d cl">
+				<h1><a href="https://www.dataworldnews.co.kr/index.php"><img src="https://cgeimage.commutil.kr/dataworld_www/img/logo01.png?pp=002" /></a></h1>
+				<div class="w1">
+					<ul class="cl">
+						<li><a href="https://www.dataworldnews.co.kr/nwcmp/intro.php" rel="nofollow">회사소개</a></li>
+						<li><a href="https://www.dataworldnews.co.kr/nwcmp/ad.php" rel="nofollow">광고문의</a></li>
+
+						<li><a href="https://www.dataworldnews.co.kr/nwcmp/prv.php" rel="nofollow">개인정보취급방침</a></li>
+						<li><a href="https://www.dataworldnews.co.kr/nwcmp/young.php" rel="nofollow">청소년보호정책</a></li>
+						<li><a href="https://www.dataworldnews.co.kr/nwcmp/noemail.php" rel="nofollow">이메일무단수집거부</a></li>
+						<li><a href="https://www.dataworldnews.co.kr/nwcmp/ykang.php" rel="nofollow">인터넷신문윤리강령</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="ft2d"><!--발행·편집인  :  박노중-->
+<p>상호 : (주)데이터 미디어 | 제호 : 데이터월드뉴스 | 등록번호 : 서울,아54029  | 등록일자 : 2021년 11월 22일 | 발행일자 : 2021년 11월 22일<br />
+발행·편집인  :  주지숙 | 편집국장  :  유경석 | 청소년보호책임자 : 주지숙 | 대표번호 : 02-6013-0053 | E-mail : news@dataworldnews.co.kr<br />
+주소 : 서울특별시 강남구 테헤란로 2길 27 비젼타워 8층 807호</p>
+<p class="mt40">Copyright©dataworldnews. All rights reserved.</p>
+			</div>
+		</div>
+	</div>
+<script language="javascript">
+var footerOffset = '';
+var winBottom = $(window).scrollTop() + $(window).innerHeight();
+var nLeftHeight = $(".mw_lt").height();
+var nRightHeight = $(".clsViewListRightForm").height();
+var nResetCount = 0;
+function fnViewPosCheck()
+{
+
+	winBottom = $(window).scrollTop() + $(window).innerHeight()-170;
+	nLeftHeight = $(".mw_lt").height();
+	nRightHeight = $(".clsViewListRightForm").height();
+	//console.log("nLeftHeight:" + nLeftHeight);
+	//console.log("nRightHeight:" + nRightHeight);
+	if( nLeftHeight > (nRightHeight + 50) )
+	{
+		//right 스크롤
+		var chaRight;
+		if( winBottom > nRightHeight )
+		{
+			chaRight = winBottom - nRightHeight;
+		}
+		else
+			chaRight = 0;
+
+		if( winBottom < footerOffset )
+		{
+			$(".clsViewListRightForm").css("margin-top", chaRight+"px" );
+		}
+	}
+}
+$(document).ready( function(){
+	if( $(".mw_lt").length > 0 && $(".clsViewListRightForm").length > 0 )
+	{
+		$(window).scroll(function(){
+			fnViewPosCheck();
+		});
+
+		if( $('.clsAdFooter').length > 0 )
+			footerOffset = $('.clsAdFooter').offset().top;
+		else
+			footerOffset = $('.clsFooter').offset().top;
+		fnViewPosCheck();
+	}
+});
+</script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+Kakao.init('9e7009874d754ac445e4da80fb3e5548');			//자바스크립트 api 키값
+function fnKakaoChannel()
+{
+	Kakao.Channel.addChannel({
+		channelPublicId: '_xlgsJb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
+	});
+}
+</script>
+
+
+<script language=javascript>
+var g_strDispType='80';
+var g_strCategory='';
+var g_strNewsID='';
+var g_strRemoteIP = '115.21.155.165';
+
+function InternalLogFunc()
+{
+	var fbds = document.createElement('script');
+	var s = document.getElementsByTagName('script')[0];
+	fbds.src = 'https://cgeimage.commutil.kr/jscomm/logger/logger.js?pp=007';
+	s.parentNode.insertBefore(fbds, s);
+}
+</script>
+
+
+
+<script language=javascript>
+	InternalLogFunc();
+	</script>
+</body>
 </html>
